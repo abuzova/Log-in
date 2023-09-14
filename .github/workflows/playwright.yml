@@ -17,13 +17,22 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+
+      # Install the allure command line and also install the Allure reporter
+    - name: Install the allure command line
+      run: npm install -g allure-commandline --save-dev
+    - name: install the Allure reporter
+      run: npm i -D @playwright/test allure-playwright
     - name: Run Playwright tests
-      run: npx playwright test
+      run: npx playwright test --reporter=line,allure-playwright
+      # allure generate my-allure-results -o allure-report --clean
+      # allure open allure-report
+      # Creating the report of tests
     - uses: actions/upload-artifact@v3
       if: always()
       with:
-        name: playwright-report
-        path: playwright-report/
+        name: allure-report
+        path: allere-report/
         retention-days: 30
   deploy:
     environment:
