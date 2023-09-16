@@ -9,7 +9,7 @@ setDefaultTimeout(60 * 1000 * 2);
 
 Given('User navigate to the Log in page', async () => {  
    
-    await pageFixture.page.goto('https://a.cms.omniupdate.com/11/#qa/fari-test/gallena');
+    await pageFixture.page.goto(process.env.BASEURL);
    
   });
 
