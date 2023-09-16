@@ -4,13 +4,13 @@ Background:
     Given User navigate to the Log in page 
 
 Scenario: User log in successfully using valid login and password
-    Given User filles "Username" fild using valid login 
-    Given User filles "Password" fild using valid password
+    Given User enter username
+    Given User enter password
     When User click on the "Login" button
-    Then User enter to his account successfully
+    Then User log in successfully
 
 Scenario: User login unsuccessfully using invalid login and password
-    Given User filles "Username" fild using invalid login 
-    Given User filles "Password" fild using invalid password
+    Given User enter username 
+    Given User enter password
     When User click on the "Login" button
     Then Login should fail
