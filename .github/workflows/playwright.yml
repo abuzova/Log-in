@@ -58,8 +58,8 @@ jobs:
   deploy:
     environment:
       name: github-pages
-   #   url: ${{ steps.deployment.outputs.page_url }}
-      url: ${{ steps.deployment.outputs.test-results.reports }}
+      url: ${{ steps.deployment.outputs.page_url }}
+   #   url: ${{ steps.deployment.outputs.test-results.reports }}
     permissions:
         id-token: write 
     runs-on: ubuntu-latest
