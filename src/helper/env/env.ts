@@ -4,7 +4,7 @@ export const getEnv = () => {
 
     dotenv.config({
         override: true,
-        //path: `src/helper/env/.env.staging`
-        path: `src/helper/env/.env.${process.env.ENV}`
+        path: `src/helper/env/.env.staging`
+        //path: `src/helper/env/.env.${process.env.ENV}`
     })
 }
