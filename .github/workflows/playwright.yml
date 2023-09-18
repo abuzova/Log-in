@@ -17,6 +17,10 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Install cross-env
+      run: npm install --save-dev cross-env
+    - name: Install Cucumber
+      run: npm install --save-dev @cucumber/cucumber
 
     # Install Multiple Cucumber HTML Reporter
     - name: Install reporter
