@@ -52,7 +52,7 @@ jobs:
     - uses: actions/upload-artifact@v3
       if: always()
       with:
-        name: test-results
+        name: Test results
         path: test-results
         retention-days: 30
   deploy:
