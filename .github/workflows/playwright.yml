@@ -50,11 +50,12 @@ jobs:
     #  run: npx ts-node src/helper/report.ts 
     - name: Output the run Details  
       uses: actions/upload-artifact@v3
-      if: always()
+      # if: always()
       with:
     #    name: Test results
-        path: test-results
-        retention-days: 30
+        #path: test-results
+        #retention-days: 30
+        path: '.'
 
   # Upload the contents of Test Results directory to workspace
   #- name: Output the run Details
@@ -67,7 +68,6 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-   #   url: ${{ steps.deployment.outputs.test-results.reports }}
     permissions:
         id-token: write 
     runs-on: ubuntu-latest
