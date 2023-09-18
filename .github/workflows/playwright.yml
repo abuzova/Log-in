@@ -48,13 +48,21 @@ jobs:
     # Run Multiple Cucumber HTML Reporter
     #- name: Run reporter
     #  run: npx ts-node src/helper/report.ts 
-      
-    - uses: actions/upload-artifact@v3
+    - name: Output the run Details  
+      uses: actions/upload-artifact@v3
       if: always()
       with:
         name: Test results
         path: test-results
         retention-days: 30
+
+  # Upload the contents of Test Results directory to workspace
+  #- name: Output the run Details
+  #uses: actions/upload-pages-artifact@v1
+  #with:
+    # Upload entire repository
+  #  path: '.'
+
   deploy:
     environment:
       name: github-pages
