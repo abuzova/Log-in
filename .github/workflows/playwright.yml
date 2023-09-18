@@ -17,10 +17,10 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Install cross-env
-      run: npm install --save-dev cross-env
-    - name: Install Cucumber
-      run: npm install --save-dev @cucumber/cucumber
+    #- name: Install cross-env
+    #  run: npm install --save-dev cross-env
+    #- name: Install Cucumber
+    #  run: npm install --save-dev @cucumber/cucumber
 
     # Install Multiple Cucumber HTML Reporter
     - name: Install reporter
@@ -38,7 +38,7 @@ jobs:
 
     - name: Run Cucumber tests
       # run: npx cucumber-js test || true
-      run: npm run test
+      run: npm test
     # - name: Run allure-results and allure-report
     #  run: |
     #    allure generate allure-results -o allure-report --clean
@@ -46,14 +46,14 @@ jobs:
     
     
     # Run Multiple Cucumber HTML Reporter
-    - name: Run reporter
-      run: npx ts-node src/helper/report.ts 
+    #- name: Run reporter
+    #  run: npx ts-node src/helper/report.ts 
       
     - uses: actions/upload-artifact@v3
       if: always()
       with:
         name: test-results
-        path: test-results/
+        path: test-results
         retention-days: 30
   deploy:
     environment:
