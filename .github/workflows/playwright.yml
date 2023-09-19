@@ -1,9 +1,9 @@
 name: Playwright Tests
 on:
   push:
-    branches: [ main, small_fixes ]
+    branches: [ main, master, log_in, small_fixes ]
   pull_request:
-    branches: [ main, small_fixes ]
+    branches: [ main, master, log_in, small_fixes ]
 jobs:
   test:
     permissions: write-all
