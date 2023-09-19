@@ -1,33 +1,37 @@
 const { Given, When, Then, setDefaultTimeout } = require('@cucumber/cucumber');
-//import footerPage from "../pages/FooterPage.spec";
 import { Browser, expect } from "@playwright/test";
 import { pageFixture } from "../hooks/pageFixture";
+import LoginPage from '../../helper/pages/loginPage';
+import * as data from "../../helper/test-data/loginUser.json";
+//import data from '../../helper/test-data/loginUser.json';
+//import data = require("../../helper/test-data/loginUser.json");
+
 
 let browser: Browser;
+let loginPage: LoginPage;
 
 setDefaultTimeout(60 * 1000 * 2);
 
-Given('User navigate to the Log in page', async () => {  
-   
-    await pageFixture.page.goto(process.env.BASEURL);
-   
-  });
-
-Given('User enter username', async () => {
-    const name = await pageFixture.page.locator('form[id="form-login"]').getByRole('textbox', {name: 'username'});
-    await name.fill('example value');
-    await expect(name).toHaveValue('example value');       
+Given('User navigate to the Log in page', async () => { 
+    loginPage = new LoginPage(pageFixture.page);  
+    await pageFixture.page.goto(process.env.BASEURL);   
 });
 
-Given('User enter password', async () => {    
-    const password = await pageFixture.page.locator('form[id="form-login"]').getByRole('textbox', {name: 'password'});
-    await password.fill('password value');
-    //await expect(password).toHaveValue('password value');    
+Given('User enter valid username and password', async () => {
+//const name = await pageFixture.page.locator('form[id="form-login"]').getByRole('textbox', {name: 'username'});
+//await name.fill(data.username);
+ //   await expect(name).toHaveValue(data.username); 
+    //await loginPage.loginUser(data.userName, data.password); 
+    await loginPage.loginUser(data.userName, data.password); 
+      
 });
 
-When('User click on the "Login" button', async () => {
-    await pageFixture.page.locator('button[type="submit"]', { hasText: 'LOGIN' }).click();
-    await pageFixture.page.waitForURL('**/gallena');
+//  pageFixture !!!!!!!
+
+When('User enter invalid username and password', async () => {
+    //await pageFixture.page.locator('button[type="submit"]', { hasText: 'LOGIN' }).click();
+    //await pageFixture.page.waitForURL('**/gallena');
+    await loginPage.loginUser(data.invalidUserName, data.invalidPassword);
 });
 
 Then("User log in successfully",  async () => {
