@@ -49,7 +49,7 @@ jobs:
     #- name: Run reporter
     #  run: npx ts-node src/helper/report.ts 
     - name: Output the run Details  
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-pages-artifact@v1
       # if: always()
       with:
     #    name: Test results
