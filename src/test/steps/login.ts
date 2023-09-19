@@ -38,7 +38,7 @@ Then("User log in successfully",  async () => {
 });
 
 Then('Login should fail', async () => {
-    const failMassage = await pageFixture.page.locator('form[id="form-login"] div[class="login-message alert alert-error"]');
+    const failMassage = await pageFixture.page.locator('form[id="form-loginmm"] div[class="login-message alert alert-error"]');
     await expect(failMassage).toHaveText('The login information provided is invalid.');
     await expect(failMassage).toBeVisible();
     //await browser.close();   
