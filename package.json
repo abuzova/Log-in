@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "cucumber-js test || true",
-    "test-env": "cross-env ENV=staging cucumber-js test || true",
+  "scripts": {   
+    "test": "cross-env ENV=staging cucumber-js test || true",
     "report": "npx ts-node src/helper/report.ts",
     "test:failed": "cucumber-js @rerun.txt"
   },
