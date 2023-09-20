@@ -24,7 +24,7 @@ jobs:
     - name: Install Multiple Cucumber HTML Reporter
       run: npm install multiple-cucumber-html-reporter --save-dev
     - name: Run Cucumber tests
-      run: npm run test-env 
+      run: npm run test 
     - name: Run Multiple Cucumber html reporter
       run: npm run report    
     - name: Output the run Details  
