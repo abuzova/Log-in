@@ -1,12 +1,15 @@
 name: Playwright Tests
 on:
   push:
-    branches: [ main, master, log_in ]
+    branches: [ main, master, log_in, small_fixes ]
   pull_request:
-    branches: [ main, master, log_in ]
+    branches: [ main, master, log_in, small_fixes ]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 jobs:
-  test:
-    permissions: write-all
+  test: 
     timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
@@ -17,61 +20,23 @@ jobs:
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
-    #- name: Install cross-env
-    #  run: npm install --save-dev cross-env
-    #- name: Install Cucumber
-    #  run: npm install --save-dev @cucumber/cucumber
-
-    # Install Multiple Cucumber HTML Reporter
-    - name: Install reporter
+      run: npx playwright install --with-deps 
+    - name: Install Multiple Cucumber HTML Reporter
       run: npm install multiple-cucumber-html-reporter --save-dev
-    
-      # Install the allure command line and also install the Allure reporter
-    # - name: Install the allure command line
-    #  run: npm install -g allure-commandline --save-dev
-    #- name: install the Allure reporter
-    #  run: npm i -D @playwright/test allure-playwright
-      # Run Playwright tests and creating the Allure report
-    #- name: Run Playwright tests
-    #  run: |
-    #    npx playwright test --reporter=line,allure-playwright
-
     - name: Run Cucumber tests
-      # run: npx cucumber-js test || true
-      run: npm test
-    # - name: Run allure-results and allure-report
-    #  run: |
-    #    allure generate allure-results -o allure-report --clean
-    #    allure open allure-report 
-    
-    
-    # Run Multiple Cucumber HTML Reporter
-    #- name: Run reporter
-    #  run: npx ts-node src/helper/report.ts 
+      run: npm run test-env 
+    - name: Run Multiple Cucumber html reporter
+      run: npm run report    
     - name: Output the run Details  
       uses: actions/upload-pages-artifact@v1
-      # if: always()
-      with:
-    #    name: Test results
-        #path: test-results
-        #retention-days: 30
-        path: '.'
-
-  # Upload the contents of Test Results directory to workspace
-  #- name: Output the run Details
-  #uses: actions/upload-pages-artifact@v1
-  #with:
-    # Upload entire repository
-  #  path: '.'
-
+      if: always()
+      with:        
+        path: 'test-results/reports'
+        retention-days: 30
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    permissions:
-        id-token: write
-        pages: write 
     runs-on: ubuntu-latest
     needs: test
     steps:
