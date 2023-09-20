@@ -6,7 +6,7 @@
   "scripts": {
     "test": "cucumber-js test || true",
     "test-env": "cross-env ENV=staging cucumber-js test || true",
-    "posttest": "npx ts-node src/helper/report.ts",
+    "report": "npx ts-node src/helper/report.ts",
     "test:failed": "cucumber-js @rerun.txt"
   },
   "keywords": [],
